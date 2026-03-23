@@ -1,9 +1,15 @@
-#include "engine/root.h"
+#include "root.h"
+
+
 
 
 int main(void){
-    REC_t* engine = InitEngine("My 2D Game!");
+    RoadEngine_t mainEng = {0};
+
+    InitEngine("My 2D Game!", &mainEng);
 
 
-    StartEngine(&engine);
+    RunMainLoop();
+
+    return 0;
 }

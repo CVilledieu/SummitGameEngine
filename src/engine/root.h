@@ -1,14 +1,17 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
-#include "glad/glad.h"
+#include "director.h"
+#include "renderer.h"
+#include "wnd.h"
+#include "rt_types.h"
+
+typedef struct RoadEngine_t{
+    GLFWwindow* window;
+    Director_t director;
+    Renderer_t renderer;
+} RoadEngine_t;
 
 
-typedef struct REC_t{
-    GLFWwindow* mainWindow;
-    SceneRegistry_t* 
 
-}REC_t;
-
-REC_t* InitEngine(const char* windowTitle);
-void StartEngine(REC_t* engine);
+uint8_t InitEngine(RoadEngine_t* enginePtr, const char* windowTitle);
+void RunMainLoop(void);

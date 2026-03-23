@@ -1,18 +1,26 @@
 #include "root.h"
-#include "wnd/wnd.h"
+#include "director.h"
+#include "renderer.h"
 
-REC_t mainEngine = {0};
-
-REC_t* InitEngine(const char* windowTitle){
-    CreateWindow(&mainEngine.mainWindow, windowTitle);
-    
-    return &mainEngine;
-}
+#include <glfw/glfw3.h>
+#include "glad/glad.h"
 
 
+RoadEngine_t* mainEngine = NULL;
 
-void StartEngine(REC_t* engine){
-    while(!glfwWindowShouldClose(mainEngine.mainWindow)){
 
-    }
-}
+uint8_t InitEngine(RoadEngine_t* enginePtr, const char* windowTitle){
+    mainEngine = &enginePtr;
+    CreateWindow(&mainEngine->window, windowTitle);
+    InitDirector(&mainEngine->director);
+
+    return 0;
+}    
+
+
+
+void RunMainLoop(void){
+    while(!glfwWindowShouldClose(mainEngine->window)){
+        DrawScene();
+    }    
+}    

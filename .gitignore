@@ -1,5 +1,7 @@
 # Project 
 .vscode/
+internal/
+tests/
 
 # Game app
 
