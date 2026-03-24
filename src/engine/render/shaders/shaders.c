@@ -1,8 +1,5 @@
 #include "shaders.h"
-
-
-#include "shaders.h"
-
+#include "fs/fs.h"
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -13,52 +10,66 @@
 
 
 
-static inline void CompileShader(ShaderEffect_t* sEffect, const char* fName, GLenum sType){
-    uint8_t* dataBuffer;
-    uint32_t fSize = GetFileData(&dataBuffer, SHADER_DIR, fName);
 
-    unsigned int shader = glCreateShader(sType);
-    const char* constBufferPtr = (const char*)dataBuffer;
-    glShaderSource(shader, 1, &constBufferPtr, NULL);
-
-    glCompileShader(shader);
+static inline uint8_t BuildShaderElement(uint32_t* sProgram, const char* src, GLenum glType){
+    uint32_t shaderElement = glCreateShader(glType);
+    glShaderSource(shaderElement, 1, src, NULL);
+    
+    glCompileShader(shaderElement);
     
     int success = 0;
     char infoLog[512];
-    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+    glGetShaderiv(shaderElement, GL_COMPILE_STATUS, &success);
     if(!success){
-        glGetShaderInfoLog(shader, 512, NULL, infoLog);
+        glGetShaderInfoLog(shaderElement, 512, NULL, infoLog);
         return 0;
     }
 
-    free(dataBuffer);
-
-
-    glAttachShader(sEffect->program, shader);
-    glDeleteShader(shader);
+    glAttachShader(sProgram, shaderElement);
+    glDeleteShader(shaderElement);
+    return 1;
 }
 
 
-
-
-
-void InitShaderEffect(ShaderEffect_t* sEffect){
-    sEffect->program = glCreateProgram();
-
-    CompileShader(sEffect, "default.vert", GL_VERTEX_SHADER);
-    CompileShader(sEffect, "default.frag", GL_FRAGMENT_SHADER);
+void CreateModelShader(ModelShader_t* mShader, uint32_t bindIndex){
+    mShader->program = glCreateProgram();
     
-
-    glLinkProgram(sEffect->program);
+    FSReader_t vertexReader = {
+        .relativePath = SHADER_DIR,
+        .fileName = "model.vert",
+    };
+    ReadFile(&vertexReader);    
+    uint8_t ok = BuildShaderElement(mShader->program, vertexReader.data, GL_VERTEX_SHADER);
+    if(!ok){
+        return;
+    }
+    FreeReader(&vertexReader);
     
+    FSReader_t fragReader = {
+        .relativePath = SHADER_DIR,
+        .fileName = "model.frag",
+    };
+    ReadFile(&fragReader);
 
+    ok = BuildShaderElement(mShader->program, fragReader.data, GL_FRAGMENT_SHADER);
+    if(!ok){
+        return;
+    }
+    FreeReader(&fragReader);
+
+    glLinkProgram(mShader->program);
 }
 
 
+uint8_t InitShaderContext(ShaderContext_t* sCtx){
+    CreateModelShader(&sCtx->modelShader, 0);
+}
 
-int DestroyShaderEffect(ShaderEffect_t* sEffect){
+
+int DestroyShaders(ShaderContext_t* sCtx){
     glUseProgram(0);
-    glDeleteProgram(sEffect->program);
+    glDeleteProgram(&sCtx->modelShader);
 }
+
 
 

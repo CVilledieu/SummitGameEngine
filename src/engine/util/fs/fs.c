@@ -9,42 +9,29 @@
     #include <windows.h>
 #endif
 
-/*FileSys pathing*/
-#define MAX_PATH_LENGTH 260
-#define ASSETS_DIR "assets\\"
-#define SHADER_DIR "shaders\\"
-
 FSPath_t rootPath = {0};
 
-
-static inline void BuildFullPath(FSData_t* reader, FSPath_t* dest){ 
-    switch(reader->targetType){
-        case FS_SHADER:
-            snprintf(dest->path, dest->length, "%s%s%s", rootPath.path, SHADER_DIR, reader->fName);
-            break;
-        default:
-            break;
+void FreeReader(FSReader_t* reader){
+    if (reader == NULL){
+        return;
     }
+    free(reader->data);
 }
 
 
-
 // Caller is responsible for freeing memory
-uint8_t ReadFile(FSData_t* reader){
+uint8_t ReadFile(FSReader_t* reader){
     if (reader == NULL) {
         return 0;
     }
-    uint32_t pathLen = rootPath.length + strlen(SHADER_DIR) + strlen(reader->fName) + 1;
-    FSPath_t filePath = {
-        .length = pathLen,
-        .path = malloc(pathLen),
-    };
+    uint16_t bufferLength = rootPath.length + strlen(reader->relativePath) + strlen(reader->fileName) + 1;
+    char buffer[bufferLength];
 
-    BuildFullPath(reader, &filePath);
+
+    snprintf(buffer, bufferLength, "%s%s%s", rootPath.path, reader->relativePath, reader->fileName);
     
-    FILE* fp = fopen(filePath.path, "rb");
+    FILE* fp = fopen(buffer, "rb");
     if(fp == NULL){
-        free(filePath.path);
         return 0;
     }
 
@@ -61,7 +48,6 @@ uint8_t ReadFile(FSData_t* reader){
     size_t bytesRead = fread(reader->data, 1, size, fp);
     reader->data[bytesRead] = '\0';
     fclose(fp);
-    free(filePath.path);
 
     reader->dataLength = size;
 
