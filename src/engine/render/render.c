@@ -6,6 +6,11 @@
 
 uint8_t InitRenderer(Renderer_t* renderer){
     InitShaderEffect(&renderer->shader);
+
+    size_t sliceSize = 1024;
+    CreateRSBuffer(&renderer->rsBuffer, sliceSize);
+
+    
 }
 
 

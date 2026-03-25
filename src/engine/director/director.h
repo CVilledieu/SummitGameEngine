@@ -1,7 +1,7 @@
 #pragma once
 
 #include <stdint.h>
-#include "rt_types.h"
+#include "common/types.h"
 
 
 #define EMPTY_STACK -1

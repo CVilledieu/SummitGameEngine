@@ -1,9 +1,11 @@
 #pragma once
 
-typedef struct Shader_t Shader_t;
-
+#include "shaders/shaders.h"
+#include "shaders/rsbuffer.h"
 typedef struct Renderer_t{
-    Shader_t* shader;
+    ShaderContext_t shader;
+    RSBuffer_t rsBuffer;
+
 }Renderer_t;
 
 uint8_t InitRenderer(Renderer_t* renderer);
