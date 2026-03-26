@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common/types.h"
+
 
 /*FileSys pathing*/
 #define MAX_PATH_LENGTH 260
@@ -9,13 +9,13 @@
 
 typedef struct FSPath_t{
     char* path;
-    uint32_t length;
+    uint8_t length;
 }FSPath_t;
 
 typedef struct FSReader_t{
     char* relativePath;
     char* fileName;
-    uint32_t dataLength;
+    uint8_t dataLength;
     uint8_t* data;
 }FSReader_t;
 

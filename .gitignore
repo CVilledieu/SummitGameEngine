@@ -2,8 +2,10 @@
 .vscode/
 internal/
 tests/
+.github/
 
 # Game app
 
 
 # Engine
+deprecated/

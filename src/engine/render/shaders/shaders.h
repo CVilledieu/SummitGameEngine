@@ -1,7 +1,9 @@
 #pragma once
 
-typedef uint32_t ShaderProgramID_t;
-typedef uint32_t BufferBinding_t;
+
+
+typedef uint8_t ShaderProgramID_t;
+typedef uint8_t BufferBinding_t;
 
 typedef struct ShaderEffect_t{
     ShaderProgramID_t program;
@@ -10,8 +12,8 @@ typedef struct ShaderEffect_t{
 
 
 typedef struct ModelShader_t{
-    uint32_t program;
-    uint32_t   index;
+    uint8_t program;
+    uint8_t   index;
 }ModelShader_t;
 
 typedef struct ShaderContext_t{

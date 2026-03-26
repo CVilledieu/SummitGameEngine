@@ -36,7 +36,7 @@ uint8_t ReadFile(FSReader_t* reader){
     }
 
     fseek(fp, 0, SEEK_END);
-    uint32_t size = ftell(fp);
+    uint8_t size = ftell(fp);
     rewind(fp);
     
     reader->data = malloc(size + 1);
@@ -58,7 +58,7 @@ uint8_t ReadFile(FSReader_t* reader){
 
 void InitFileSys(void){
     char tempBuffer[MAX_PATH_LENGTH];
-    uint32_t bufferLength = 0;
+    uint8_t bufferLength = 0;
     // Load full app path into buffer. This includes .exe file
     #ifdef _WIN32
         GetModuleFileNameA(NULL, tempBuffer, MAX_PATH_LENGTH);
@@ -68,7 +68,7 @@ void InitFileSys(void){
     #endif
 
 
-    for (uint32_t i = 0; tempBuffer[i] != '\0'; i++) {
+    for (uint8_t i = 0; tempBuffer[i] != '\0'; i++) {
         if (tempBuffer[i] == '\\')
             bufferLength = i + 1;
     }

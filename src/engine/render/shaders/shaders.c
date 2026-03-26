@@ -11,8 +11,8 @@
 
 
 
-static inline uint8_t BuildShaderElement(uint32_t* sProgram, const char* src, GLenum glType){
-    uint32_t shaderElement = glCreateShader(glType);
+static inline uint8_t BuildShaderElement(uint8_t* sProgram, const char* src, GLenum glType){
+    uint8_t shaderElement = glCreateShader(glType);
     glShaderSource(shaderElement, 1, src, NULL);
     
     glCompileShader(shaderElement);
@@ -31,7 +31,7 @@ static inline uint8_t BuildShaderElement(uint32_t* sProgram, const char* src, GL
 }
 
 
-void CreateModelShader(ModelShader_t* mShader, uint32_t bindIndex){
+void CreateModelShader(ModelShader_t* mShader, uint8_t bindIndex){
     mShader->program = glCreateProgram();
     
     FSReader_t vertexReader = {

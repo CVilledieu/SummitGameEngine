@@ -1,4 +1,6 @@
 #include "render.h"
+#include "shaders/shaders.h"
+#include "frames/buffer.h"
 
 #include <stdint.h>
 #include <GLFW/glfw3.h>

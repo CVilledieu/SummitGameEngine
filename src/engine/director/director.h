@@ -1,7 +1,7 @@
 #pragma once
+#include "scene/scene.h"
 
 #include <stdint.h>
-#include "common/types.h"
 
 
 #define EMPTY_STACK -1

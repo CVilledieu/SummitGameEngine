@@ -36,7 +36,7 @@ uint8_t InitDirector(Director_t* director){
     }
 
     director->next = MAX_SCENES;
-    for (uint32_t index = 0; index < MAX_SCENES; index++){
+    for (uint8_t index = 0; index < MAX_SCENES; index++){
         director->stack[index] = index;
         director->scenes[index].id = index;
     }
