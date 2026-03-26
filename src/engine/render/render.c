@@ -1,6 +1,6 @@
 #include "render.h"
 #include "shaders/shaders.h"
-#include "frames/buffer.h"
+#include "framing/buffer.h"
 
 #include <stdint.h>
 #include <GLFW/glfw3.h>
@@ -10,7 +10,7 @@ uint8_t InitRenderer(Renderer_t* renderer){
     InitShaderEffect(&renderer->shader);
 
     size_t sliceSize = 1024;
-    CreateRSBuffer(&renderer->rsBuffer, sliceSize);
+    CreateFrameBuffer(&renderer->rsBuffer, sliceSize);
 
     
 }
