@@ -1,10 +1,12 @@
 #pragma once
+#include "engine_config.h"
+
 
 
 typedef struct Renderer_t{
-    ShaderContext_t shader;
-    FameBuffer_t rsBuffer;
-    
+    ShaderContext_t shaders;
+    GraphicsBuffer_t gBuffer;
+    ModelWriter_t modelWriter;
 
 }Renderer_t;
 
