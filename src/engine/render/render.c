@@ -1,7 +1,7 @@
 #include "render.h"
 #include "shaders/shaders.h"
 #include "graphics/buffer.h"
-#include "graphics/gb_modeling.h"
+
 
 
 #include <stdint.h>
