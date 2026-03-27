@@ -9,9 +9,8 @@ void WindowResized(GLFWwindow* window, int width, int height){
     glViewport(0, 0, width, height);
 }
 
-
-static inline void CreateWindow(GLFWwindow* mainWindow, const char* title){
-    if(mainWindow == NULL || !glfwInit()){
+int InitGameWindow(GLFWwindow* window){
+    if(window == NULL || !glfwInit()){
         return;
     }
 
@@ -23,7 +22,11 @@ static inline void CreateWindow(GLFWwindow* mainWindow, const char* title){
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
 
-    mainWindow = glfwCreateWindow(800, 600, title, NULL, NULL);
+}
+
+
+static inline void OpenWindow(GLFWwindow* mainWindow, const char* title, int width, int height ){
+    mainWindow = glfwCreateWindow(width, height, title, NULL, NULL);
 
     glfwMakeContextCurrent(mainWindow);
 

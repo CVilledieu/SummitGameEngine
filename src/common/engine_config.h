@@ -1,30 +1,36 @@
 #pragma once
 
-/*
-    Engine config not meant to be adjusted 
-
-*/
-
-#include "engine_types.h"
+//Add a second file specifically for what should be adjusted?
+#include "common/engine_types.h"
 
 
-// Optionals
+// Options
+#ifndef DIRECTOR_MAX_SCENES_COUNT
+#define DIRECTOR_MAX_SCENES_COUNT 64
+#endif
+
+#ifndef MAX_REGISTERED_MESHES
+#define MAX_REGISTERED_MESHES 256
+#endif
+
+
+
+//Render config
 #ifndef BUFFER_SLICE_COUNT
 #define BUFFER_SLICE_COUNT 3
+#endif
+
+
+// Should this be a single macro? 
+#ifndef MAX_MESHES_PER_FRAME
+#define MAX_MESHES_PER_FRAME 256
+#define MAX_MODELS_COUNT_PER_FRAME MAX_MESHES_PER_FRAME
 #endif
 // end optionals
 
 
 
-//Director Config
-#define DIRECTOR_MAX_SCENES_COUNT 64
-
-//Mesh Config
-#define MAX_REGISTERED_MESHES 256
-
-//Render config
-#define MAX_MESHES_PER_FRAME 128
-#define MAX_MODELS_COUNT_PER_FRAME 128
+//
 
 #define PEAK_OBJECT_BYTES ((size_t)MAX_MODELS_COUNT_PER_FRAME * sizeof(ModelData_t))
 #define PEAK_LIGHTING_BYTES (size_t)0 //Place holder, because I dont have lighting added
