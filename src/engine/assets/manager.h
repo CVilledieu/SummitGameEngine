@@ -16,7 +16,15 @@ typedef struct Asset_t{
 
 }Asset_t;
 
-typedef struct AssetSystem{
+typedef struct InactiveAssets_t{
+
+}InactiveAssets_t;
+
+typedef struct ActiveAssets_t{
+
+}ActiveAssets_t;
+
+typedef struct AssMan_t{
     uint32_t assetCount;
     Asset_t* assetList;
-}AssetSystem;
+}AssMan_t;

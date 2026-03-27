@@ -1,16 +1,12 @@
 #include "root.h"
 #include "director.h"
-#include "renderer.h"
+
 
 #include <glfw/glfw3.h>
 #include "glad/glad.h"
 
 
-RoadEngine_t* mainEngine = NULL;
-
-
 uint8_t InitEngine(RoadEngine_t* enginePtr, const char* windowTitle){
-    mainEngine = &enginePtr;
     CreateWindow(&mainEngine->window, windowTitle);
     InitDirector(&mainEngine->director);
 
@@ -18,9 +14,15 @@ uint8_t InitEngine(RoadEngine_t* enginePtr, const char* windowTitle){
 }    
 
 
+int main(void){
+    RoadEngine_t engine = {0};
 
-void RunMainLoop(void){
-    while(!glfwWindowShouldClose(mainEngine->window)){
-        DrawScene();
-    }    
-}    
+    InitEngine(&engine,"My 2D Game!");
+
+
+    while(!glfwWindowShouldClose(engine.window)){
+        
+    }
+
+    return 0;
+}

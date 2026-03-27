@@ -1,5 +1,10 @@
 #pragma once
 
+/*
+    Engine config not meant to be adjusted 
+
+*/
+
 #include "engine_types.h"
 
 
@@ -8,6 +13,7 @@
 #define BUFFER_SLICE_COUNT 3
 #endif
 // end optionals
+
 
 
 //Director Config

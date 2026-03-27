@@ -1,9 +1,7 @@
 #pragma once
 
 #include "director.h"
-#include "renderer.h"
 #include "wnd.h"
-#include "rt_types.h"
 
 typedef struct RoadEngine_t{
     GLFWwindow* window;
