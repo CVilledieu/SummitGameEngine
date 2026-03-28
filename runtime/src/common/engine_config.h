@@ -4,10 +4,19 @@
 #include "common/engine_types.h"
 
 
-// Options
-#ifndef DIRECTOR_MAX_SCENES_COUNT
-#define DIRECTOR_MAX_SCENES_COUNT 64
+
+#ifndef MAX_SCENE_REGISTER_COUNT
+#define MAX_SCENE_REGISTER_COUNT 64
 #endif
+
+
+
+//Director config
+#define DIRECTOR_MAX_SCENES_COUNT 16
+//end Director config
+
+
+
 
 #ifndef MAX_REGISTERED_MESHES
 #define MAX_REGISTERED_MESHES 256
@@ -15,7 +24,9 @@
 
 
 
-//Render config
+
+
+//Renderer config
 #ifndef BUFFER_SLICE_COUNT
 #define BUFFER_SLICE_COUNT 3
 #endif
@@ -26,11 +37,7 @@
 #define MAX_MESHES_PER_FRAME 256
 #define MAX_MODELS_COUNT_PER_FRAME MAX_MESHES_PER_FRAME
 #endif
-// end optionals
 
-
-
-//
 
 #define PEAK_OBJECT_BYTES ((size_t)MAX_MODELS_COUNT_PER_FRAME * sizeof(ModelData_t))
 #define PEAK_LIGHTING_BYTES (size_t)0 //Place holder, because I dont have lighting added
@@ -51,6 +58,6 @@
 #define FENCE_SYNC_TIMEOUT 1000000ULL
 #define MODEL_BINDING_INDEX 0
 #define LIGHT_BINDING_INDEX 1
-
+//end Renderer config
 
 
