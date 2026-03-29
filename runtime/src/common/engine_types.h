@@ -11,10 +11,4 @@ typedef Vec2 ModelData_t;
 
 typedef uint32_t SceneId;
 
-typedef uint16_t SceneIndex;
 
-typedef struct Scene{
-    uint16_t activeFlag;
-    SceneId id;
-    
-}Scene;

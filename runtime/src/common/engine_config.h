@@ -13,6 +13,7 @@
 
 //Director config
 #define DIRECTOR_MAX_SCENES_COUNT 16
+
 #define DIRECTOR_EMPTY_STACK -1
 //end Director config
 

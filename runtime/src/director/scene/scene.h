@@ -1,11 +1,11 @@
 #pragma once
 
-#include <stdint.h>
 #include "common/engine_config.h"
-#include "common/engine_types.h"
 
 
+// Types
 
+// Registry typing
 typedef struct SceneContext {
     void* game;
     void* engine;
@@ -21,36 +21,56 @@ typedef struct SceneHooks {
 } SceneHooks;
 
 typedef struct SceneDefinition {
-    uint32_t id;
+    SceneId id;
     const char* name;
     SceneHooks hooks;
 } SceneDefinition;
 
+typedef struct SceneRegistry {
+    SceneDefinition defs[DIRECTOR_MAX_SCENES_COUNT];
+    uint16_t count;
+} SceneRegistry;
+
+
+
+// Stack typing
+typedef enum ActiveSceneState{
+    WAITING = 0,
+    ACTIVE,
+}ActiveSceneState;
+
+typedef struct ActiveScene{
+    SceneId id;
+    ActiveSceneState* state;    
+}ActiveScene;
+
 typedef struct SceneStack {
-    uint32_t list[DIRECTOR_MAX_SCENES_COUNT];
-    int32_t top; /* -1 means empty */
+    ActiveScene asList[DIRECTOR_MAX_SCENES_COUNT];
+    SceneId list[DIRECTOR_MAX_SCENES_COUNT];
+    int32_t top; 
 } SceneStack;
 
 
-typedef struct SceneTable {
-    SceneDefinition defs[DIRECTOR_MAX_SCENES_COUNT];
-    uint16_t count;
-} SceneTable;
+
+
+
+
+// APIs
+
+/* Table API*/
+void SceneRegistry_Init(SceneRegistry* reg);
+uint8_t SceneRegistry_NewScene(SceneRegistry* reg, const SceneDefinition* def);
+const SceneDefinition* SceneRegistry_GetSceneDef(const SceneRegistry* reg, SceneId id);
+
+
+
+/*Stack API*/
+void SceneStack_Init(SceneStack* stack);
+uint8_t SceneStack_Push(SceneStack* stack, SceneId id);
+uint8_t SceneStack_Pop(SceneStack* stack, SceneId* outId);
+uint8_t SceneStack_Peek(const SceneStack* stack, SceneId* outId);
 
 
 
 /* Hook API*/
-
-
-/*Stack API*/
-void InitStack(SceneStack* stack);
-uint8_t PushStack(SceneStack* stack, uint32_t id);
-uint8_t PopStack(SceneStack* stack, uint32_t* outId);
-uint8_t PeekStack(const SceneStack* stack, uint32_t* outId);
-
-/* Table API*/
-void InitSceneTable(SceneTable* reg);
-uint8_t RegisterScene(SceneTable* reg, const SceneDefinition* def);
-const SceneDefinition* GetSceneDefById(const SceneTable* reg, uint32_t id);
-
 
