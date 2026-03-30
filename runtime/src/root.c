@@ -1,4 +1,5 @@
 #include "common/engine_config.h"
+#include "director/director.h"
 #include "wnd/wnd.h"
 #include "render/render.h"
 
@@ -6,7 +7,7 @@
 #include "glad/glad.h"
 
 typedef struct EngineCtx{
-    Director director;
+    Director director; // Game layer api handler
     AssManager assets;
     Renderer renderer;
 }EngineCtx;

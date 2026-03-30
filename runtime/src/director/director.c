@@ -1,51 +1,35 @@
 #include "director.h"
-#include "scene.h"
-#include "common/engine_config.h"
+#include "gamelayer/wrappers.h"
+#include "scenes/registry.h"
+#include "scenes/active_stack.h"
+
+#include "village/village.h"
 
 
 
-uint8_t Director_Init(Director* director){
-    if(!director){
+uint8_t RunUpdateGHook(Director* director){
+    if(!director || !director->gHooks.On_Update){
         return 0;
     }
-    director->state = DS_STANDBY;
-    InitRegistry(&director->registry);
-    SceneStack_Init(&director->stack);
+    director->gHooks.On_Update();
+    return 1;
+}
 
+uint8_t RunShutdownGHook(Director* director){
+    if(!director || !director->gHooks.On_Shutdown){
+        return 0;
+    }
+    director->gHooks.On_Shutdown();
     return 1;
 }
 
 
-uint8_t Director_RegisterScene(Director* director, const SceneDefinition* def){
-    if(!director || !def){
+uint8_t InitDirector(Director* director){
+    InitSceneStack(&director->stack);
+    InitSceneRegister(&director->registry);
+    if(InitVillageGameEngine(&director->wrapper)){
         return 0;
     }
-    if(!SceneRegistry_NewScene(&director->registry, def)){
-        return 0;
-    }
+
     return 1;
-}
-
-uint8_t Director_PushScene(Director* director, SceneId id, SceneContext* ctx){
-    if(!director || !ctx){
-        return 0;
-    }
-
-    SceneStack_Push(&director->stack, id);
-    return 1;
-}
-
-uint8_t Director_SwitchScene(Director* director, SceneId id, SceneContext* ctx){
-
-}
-
-
-
-
-void Director_Update(Director* director, SceneContext* ctx, float dt){
-
-}
-
-void Director_Render(Director* d, SceneContext* ctx){
-
 }

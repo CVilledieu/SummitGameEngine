@@ -1,4 +1,7 @@
 #pragma once
+
+//Exposed engine types
+
 #include <stdint.h>
 #include "glad/glad.h"
 
@@ -10,5 +13,5 @@ typedef float Vec4[4];
 typedef Vec2 ModelData_t;
 
 typedef uint32_t SceneId;
-
+typedef uint32_t EntityId;
 

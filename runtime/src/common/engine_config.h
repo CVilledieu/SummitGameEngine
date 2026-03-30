@@ -1,7 +1,7 @@
 #pragma once
 
 //Add a second file specifically for what should be adjusted?
-#include "common/engine_types.h"
+#include "common/VGE_types.h"
 
 
 
@@ -10,12 +10,6 @@
 #endif
 
 
-
-//Director config
-#define DIRECTOR_MAX_SCENES_COUNT 16
-
-#define DIRECTOR_EMPTY_STACK -1
-//end Director config
 
 
 
