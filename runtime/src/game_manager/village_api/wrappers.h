@@ -4,6 +4,8 @@ typedef struct Manager Manager;
 typedef struct SceneDefinition SceneDefinition;
 
 
+
+
 typedef struct VGE_Handler{
     Manager* unwrapped;
 } VGE_Handler;

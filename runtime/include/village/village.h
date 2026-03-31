@@ -4,9 +4,9 @@
 
 
 //types
+typedef uint32_t VGE_SceneId;
 typedef struct VGE_Scene VGE_Scene;
 typedef struct VGE_Handler VGE_Handler;
-
 
 // Game Context defined
 uint8_t InitVillageGameEngine(VGE_Handler* vgeHandler);
@@ -16,8 +16,8 @@ uint8_t InitVillageGameEngine(VGE_Handler* vgeHandler);
 // Engine defined
 
 // Director Callbacks
-uint8_t VGESetEngineCallback_Update(VGE_Handler* vgeHandler, void (*updateCB)(void));
-uint8_t VGESetEngineCallback_Shutdown(VGE_Handler* vgeHandler, void (*shutdownCB)(void));
+uint8_t VGESetEngineCallback_Update(void (*updateCB)(void));
+uint8_t VGESetEngineCallback_Shutdown(void (*shutdownCB)(void));
 
 // Scene Callbacks
 
