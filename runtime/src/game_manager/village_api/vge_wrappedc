@@ -1,9 +1,11 @@
 #include "wrappers.h"
 #include "village/village.h"
-#include "director.h"
+
 #include "common/vge_types.h"
 
-uint8_t VGESetCallback_Update(VGE_Handler* vgeHandler, void (*updateCB)(void)){
+
+
+uint8_t VGESetEngineCallback_Update(VGE_Handler* vgeHandler, void (*updateCB)(void)){
     if(!vgeHandler || !updateCB){
         return 0;
     }
@@ -11,7 +13,7 @@ uint8_t VGESetCallback_Update(VGE_Handler* vgeHandler, void (*updateCB)(void)){
     return 1;
 }
 
-uint8_t VGESetCallback_Shutdown(VGE_Handler* vgeHandler, void (*shutdownCB)(void)){
+uint8_t VGESetEngineCallback_Shutdown(VGE_Handler* vgeHandler, void (*shutdownCB)(void)){
     if(!vgeHandler || !shutdownCB){
         return 0;
     }

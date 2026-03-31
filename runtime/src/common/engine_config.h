@@ -1,7 +1,7 @@
 #pragma once
 
 //Add a second file specifically for what should be adjusted?
-#include "common/VGE_types.h"
+#include "common/vge_types.h"
 
 
 

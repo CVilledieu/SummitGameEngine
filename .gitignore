@@ -1,11 +1,11 @@
 # Project 
-.vscode/
+
 internal/
 tests/
 .github/
+deprecated/
 
 # Game app
 
 
 # Engine
-deprecated/

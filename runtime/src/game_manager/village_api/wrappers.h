@@ -1,11 +1,11 @@
 #pragma once
 
-typedef struct Director Director;
+typedef struct Manager Manager;
 typedef struct SceneDefinition SceneDefinition;
 
 
 typedef struct VGE_Handler{
-    Director* unwrapped;
+    Manager* unwrapped;
 } VGE_Handler;
 
 typedef struct VGE_Scene{
