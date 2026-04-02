@@ -6,19 +6,14 @@
 //types
 typedef uint32_t VGE_SceneId;
 typedef struct VGE_Scene VGE_Scene;
-typedef struct VeCtx VeCtx;
+typedef struct VEngHandler VEngHandler;
 
 // Game Context defined
-uint8_t Game_Init(VeCtx* vCtx);
-
+uint8_t GameLayer_Init(VEngHandler* vEngHandler);
+uint8_t GameLayer_Update(VEngHandler* vEngHandler);
+uint8_t GameLayer_Shutdown(void);
 
 
 // Engine defined
-
-// Manager Callbacks
-uint8_t VGESetEngineCallback_StartUp(void (*startCB)(void));
-uint8_t VGESetEngineCallback_Update(void (*updateCB)(void));
-uint8_t VGESetEngineCallback_Shutdown(void (*shutdownCB)(void));
-
 
 
