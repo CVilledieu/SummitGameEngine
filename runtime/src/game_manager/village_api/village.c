@@ -5,21 +5,6 @@
 
 
 
-static VGE_Handler* vgeHandler = NULL;
-
-uint8_t VGEWrapper_Init(VGE_Handler* wrapperPtr){
-    if(!wrapperPtr){
-        return 0;
-    }
-
-    vgeHandler = wrapperPtr;
-
-    if(!VGE_Init()){
-        return 0;
-    }
-
-    return 1;
-}
 
 
 uint8_t VGESetEngineCallback_StartUp(void (*startCB)(void)){

@@ -12,18 +12,18 @@
 //     void (*On_Shutdown)(VGE_Scene* vgeScene);
 // }SceneHooks;
 
-
+typedef struct SceneHooks SceneHooks;
 
 typedef struct GameHooks{
-    uint8_t (*On_StartUp)(void); //Before mainloop
-    uint8_t (*On_Update)(void); //During mainloop
-    uint8_t (*On_Shutdown)(void); //After mainloop
+    uint8_t (*On_StartUp)(VeCtx* vCtx); //Before mainloop
+    uint8_t (*On_Update)(VeCtx* vCtx); //During mainloop
+    uint8_t (*On_Shutdown)(VeCtx* vCtx); //After mainloop
 }GameHooks;
 
 typedef struct GCManager{
     SceneHooks* hooks;
     GameHooks gHooks;
-    VGE_Handler wrapper;
+    VeCtx wrapper;
 }GCManager;
 
 

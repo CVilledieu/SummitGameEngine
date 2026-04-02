@@ -10,7 +10,7 @@ void UpdateGameLayer(void){
 
 }
 
-uint8_t InitVillageGameEngine(VGE_Handler* vgeHandler){
+uint8_t InitVillageGameEngine(VeCtx* vgeHandler){
     if(!vgeHandler){
         return 0; 
     

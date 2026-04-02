@@ -5,11 +5,11 @@ typedef struct SceneDefinition SceneDefinition;
 
 
 
+typedef struct VCtx{
+    void* engine;
+    void* game;
+}VCtx;
 
-typedef struct VGE_Handler{
+typedef struct VeCtx{
     Manager* unwrapped;
-} VGE_Handler;
-
-typedef struct VGE_Scene{
-    SceneDefinition* unwrapped;
-} VGE_Scene;
+} VeCtx;

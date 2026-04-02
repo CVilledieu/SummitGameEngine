@@ -1,6 +1,6 @@
 #include "manager.h"
 #include "village_api/wrappers.h"
-
+#include <stdlib.h>
 
 uint8_t GameContextManager_Init(GCManager* gm){
     if(!gm){
@@ -9,14 +9,12 @@ uint8_t GameContextManager_Init(GCManager* gm){
     gm->gHooks.On_Update = NULL;
     gm->gHooks.On_Shutdown = NULL;
     
-    
+    if(!Game_Init(&gm->wrapper)){
+        return 0;
+    }
 
     return 1;
 }
-
-// void SetVGECallback_StartUp(GCManager* gm, void (*funcPtr)(void)){
-//     gm->gHooks.On_StartUp 
-// }
 
 uint8_t GCManager_StartUp(GCManager* gm){
     if(!gm || !gm->gHooks.On_StartUp){
