@@ -68,3 +68,8 @@ typedef struct SceneHandler{
 
 uint8_t SceneHandler_Init(SceneHandler* sHandler);
 uint8_t SceneHandler_Shutdown(SceneHandler* sHandler);
+
+uint8_t SceneHandler_RegisterScene(SceneHandler* sHandler, const SceneId sId, const char* sceneName);
+
+
+

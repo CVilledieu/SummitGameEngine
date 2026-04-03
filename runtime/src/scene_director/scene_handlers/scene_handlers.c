@@ -92,14 +92,27 @@ uint8_t SceneHandler_Shutdown(SceneHandler* sHandler){
 
 
 
-
-static inline void Arena_RegisterName(NameArena* nArena, const char* sName){
-    if(!nArena || !sName){
+// Register new scene
+static inline uint8_t Arena_RegisterName(NameArena* nArena, const char* sName, ArenaTag* aTag){
+    if(!nArena || !sName || !aTag){
         return 0;
     }
 
 
-    
+    size_t nameLen = strlen(sName) + 1;
+
+    if(nameLen >= nArena->remaining){
+        return 0;
+    }
+
+    char* arenaPtr = nArena->namePool + (nArena->length - nArena->remaining);    
+    memcpy(arenaPtr, sName, nameLen);
+    nArena->remaining -= nameLen;
+
+    aTag->length = nameLen;
+    aTag->ptr = arenaPtr;
+
+    return 1;
 }
 
 
@@ -116,8 +129,17 @@ uint8_t SceneHandler_RegisterScene(SceneHandler* sHandler, const SceneId sId, co
 
     SceneDefinition* sDef = &sRegistry->definitionList[definitionIndex];
     sDef->id = sId;
-
-
+    Arena_RegisterName(&sHandler->nameArena, sceneName, &sDef->name);
 
     return 1;
+}
+
+
+
+
+//Push scene onto active stack
+
+
+uint8_t SceneHandler_PushActive(SceneHandler* sHandler, const SceneId sId){
+    
 }
